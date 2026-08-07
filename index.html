@@ -800,7 +800,7 @@ async function renderVisualChart() {
     };
 
     try {
-       const response = await fetch('/api/visual', {, {
+       const response = await fetch('/api/visual', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
