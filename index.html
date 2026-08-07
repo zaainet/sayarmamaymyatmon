@@ -800,8 +800,7 @@ async function renderVisualChart() {
     };
 
     try {
-        // သတိပြုရန်: ဤနေရာတွင် API ကို လုံခြုံရေးအရ Python Backend (Localhost) သို့ လှမ်းခေါ်ရန် ရေးသားထားပါသည်။
-        const response = await fetch('http://localhost:5000/api/astrology/visual', {
+       const response = await fetch('/api/visual', {, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -811,10 +810,9 @@ async function renderVisualChart() {
 
         const data = await response.json();
         
-        // Backend မှ SVG String ကို ပြန်လည်ရယူခြင်း
+       
         const svgCode = data.svg || data.data; 
 
-        // HTML ထဲရှိ .celestial-map နေရာတွင် အစားထိုးပြသခြင်း
         const mapContainer = document.querySelector('.celestial-map');
         if (mapContainer && svgCode) {
             mapContainer.innerHTML = svgCode;
