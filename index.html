@@ -3,511 +3,642 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#050b14">
-  <title>မြန်မာ့ရိုးရာပြက္ခဒိန်နက္ခတ်ဗေဒင်</title>
+  <meta name="theme-color" content="#030712">
+  <title>မြန်မာ့ရိုးရာပြက္ခဒိန် နက္ခတ်ဗေဒင် Pro</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;700;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700;900&display=swap');
 
     :root {
-      /* Enhanced Premium Dark, Deep Cosmic & Gold Palette */
-      --bg-deep: #030712;
-      --bg-surface: #0a1120;
-      --glass-bg: rgba(13, 20, 35, 0.75);
-      --glass-border: rgba(234, 198, 73, 0.35);
-      --line: rgba(234, 198, 73, 0.18);
+      /* Ultra Premium Dark & Cosmic Gold Palette */
+      --bg-space: #030712;
+      --bg-nebula: #0f172a;
+      
+      --glass-bg: rgba(15, 23, 42, 0.5);
+      --glass-border: rgba(223, 183, 108, 0.15);
+      --glass-border-highlight: rgba(223, 183, 108, 0.4);
       
       --gold-light: #fef08a;
-      --gold: #eac649;
-      --gold-dark: #c59b27;
-      --gold-gradient: linear-gradient(135deg, #fff7ad 0%, #eac649 50%, #b4860b 100%);
+      --gold: #dfb76c;
+      --gold-dark: #b4860b;
+      --gold-gradient: linear-gradient(135deg, #fef08a 0%, #dfb76c 40%, #b4860b 100%);
       
-      --text: #f8fafc;
+      --text-main: #f8fafc;
       --text-muted: #94a3b8;
       
-      --shadow-glow: 0 10px 40px 0 rgba(234, 198, 73, 0.12);
-      --radius: 24px;
+      --shadow-premium: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+      --shadow-glow: 0 0 20px rgba(223, 183, 108, 0.1);
+      
+      --radius-lg: 24px;
+      --radius-md: 16px;
     }
 
     * { box-sizing: border-box; }
     
     html { 
-      background-color: var(--bg-deep); 
+      background-color: var(--bg-space); 
       color-scheme: dark; 
       scroll-behavior: smooth;
     }
 
     body {
-      margin: 0; min-height: 100vh; padding-bottom: 110px; color: var(--text);
+      margin: 0; min-height: 100vh; color: var(--text-main);
       font-family: "Noto Sans Myanmar", system-ui, sans-serif; line-height: 1.6;
       background: 
-        radial-gradient(circle at 10% 10%, rgba(234, 198, 73, 0.12), transparent 30%),
-        radial-gradient(circle at 90% 80%, rgba(29, 78, 216, 0.18), transparent 35%),
-        var(--bg-deep);
-      position: relative; isolation: isolate; overflow-x: hidden;
+        radial-gradient(circle at 10% 0%, rgba(223, 183, 108, 0.08), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(30, 58, 138, 0.15), transparent 40%),
+        var(--bg-space);
+      background-attachment: fixed;
+      position: relative; overflow-x: hidden;
+      display: flex;
     }
 
-    /* Enhanced Starry Background Animation */
+    /* Cosmic Starfield */
     body::before {
       content: "✦  ✧  ⋆  ✦  ✧  ✦  ⋆  ✧  ✦  ✧  ⋆  ✦  ✧  ✦  ⋆  ✧  ✦  ✧";
       position: fixed; inset: -20%; z-index: -1; pointer-events: none;
-      color: rgba(234, 198, 73, 0.18);
-      font-size: 24px; line-height: 4; letter-spacing: 3rem; word-spacing: 4rem;
-      transform: rotate(-10deg);
-      animation: twinkle 18s linear infinite alternate;
+      color: rgba(223, 183, 108, 0.12);
+      font-size: 20px; line-height: 4; letter-spacing: 4rem; word-spacing: 5rem;
+      transform: rotate(-15deg);
+      animation: starlight 20s linear infinite alternate;
     }
 
-    @keyframes twinkle {
-      0% { opacity: 0.4; transform: rotate(-10deg) translateY(0); }
-      100% { opacity: 0.9; transform: rotate(-10deg) translateY(-25px); }
+    @keyframes starlight {
+      0% { opacity: 0.3; transform: rotate(-15deg) translateY(0) scale(1); }
+      100% { opacity: 0.8; transform: rotate(-15deg) translateY(-30px) scale(1.05); }
     }
 
-    button, input { font: inherit; } 
-    button { cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-    a { color: inherit; text-decoration: none; }
+    /* Layout & Sidebar (ဘေးဘက် Menu) */
+    .sidebar {
+      width: 100px;
+      background: rgba(10, 15, 30, 0.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-right: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 0;
+      gap: 16px;
+      position: fixed;
+      height: 100vh;
+      z-index: 100;
+      box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    .navbtn {
+      width: 76px; height: 76px;
+      border: 1px solid transparent;
+      background: transparent; color: var(--text-muted);
+      border-radius: 20px; padding: 10px; font-weight: 600; font-size: 11px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .navbtn i { font-size: 22px; font-style: normal; }
+    .navbtn:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
+    .navbtn.active { 
+      background: rgba(223, 183, 108, 0.12); color: var(--gold-light); 
+      border-color: rgba(223, 183, 108, 0.3);
+      box-shadow: inset 0 0 15px rgba(223, 183, 108, 0.1), 0 5px 15px rgba(0,0,0,0.3); 
+    }
+    .navbtn.active i { text-shadow: 0 0 10px var(--gold-light); }
+
+    .main-content {
+      margin-left: 100px;
+      flex-grow: 1;
+      min-height: 100vh;
+    }
+
+    .app { max-width: 900px; margin: 0 auto; padding: 30px 24px; }
     
-    .app { max-width: 1020px; margin: auto; padding: 20px 16px; }
     .hidden { display: none !important; }
-    .tab-page { animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
     
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: none; }
+    .tab-page { animation: blurFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes blurFadeIn {
+      from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+      to { opacity: 1; transform: none; filter: blur(0); }
     }
 
-    /* Premium Enhanced Glassmorphism Card */
+    /* Ultra Premium Glass Card */
     .glass-card {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--glass-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-glow);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), var(--shadow-premium), var(--shadow-glow);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: var(--glass-border-highlight);
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), var(--shadow-premium), 0 0 30px rgba(223, 183, 108, 0.15);
     }
 
+    /* Hero Section with Celestial Orbit (ကောင်းကင်ကားချပ်) */
     .hero {
-      position: relative; overflow: hidden; padding: 36px 20px;
-      text-align: center; border-radius: 32px;
-    }
-    .hero::after {
-      content: "☾"; position: absolute; right: -15px; top: -45px;
-      font-size: 160px; color: rgba(234, 198, 73, 0.04); transform: rotate(-20deg);
+      position: relative; overflow: hidden; padding: 50px 30px;
+      margin-bottom: 24px;
     }
     
-    .eyebrow { color: var(--gold); font-size: 13px; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; }
+    .hero-content { position: relative; z-index: 10; max-width: 60%; }
+    
+    .celestial-map {
+      position: absolute; right: -20px; top: -30px; width: 350px; height: 350px;
+      pointer-events: none; opacity: 0.95; z-index: 1;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .sun-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 45px; height: 45px; border-radius: 50%; 
+      background: radial-gradient(circle, #fef08a 10%, #dfb76c 60%, #b4860b 100%);
+      box-shadow: 0 0 50px #dfb76c, inset 0 0 10px #fff;
+    }
+    .orbit-ring {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      border: 1px dashed rgba(223, 183, 108, 0.25); border-radius: 50%;
+    }
+    .earth-orbit { width: 220px; height: 220px; animation: orbitSpin 25s linear infinite; }
+    .earth-group {
+      position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
+      width: 60px; height: 60px;
+    }
+    .planet-earth {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 18px; height: 18px; border-radius: 50%; 
+      background: radial-gradient(circle at 30% 30%, #60a5fa, #1e3a8a); 
+      box-shadow: 0 0 15px rgba(96, 165, 250, 0.6);
+    }
+    .moon-orbit { width: 50px; height: 50px; animation: orbitSpin 5s linear infinite; }
+    .planet-moon {
+      position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
+      width: 6px; height: 6px; border-radius: 50%; background: #e2e8f0; 
+      box-shadow: 0 0 8px #cbd5e1;
+    }
+    @keyframes orbitSpin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    .eyebrow { 
+      display: inline-block; color: var(--gold-light); font-size: 11px; font-weight: 700; 
+      letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 14px;
+      border: 1px solid rgba(223, 183, 108, 0.3); border-radius: 50px; background: rgba(223, 183, 108, 0.05);
+      margin-bottom: 16px;
+    }
     h1 {
-      margin: 12px 0; font-size: clamp(24px, 4.5vw, 38px); line-height: 1.35;
+      margin: 0 0 12px; font-size: clamp(28px, 5vw, 40px); line-height: 1.3;
       background: var(--gold-gradient);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-shadow: 0 4px 15px rgba(234, 198, 73, 0.25);
+      text-shadow: 0 4px 20px rgba(223, 183, 108, 0.2); font-weight: 900;
     }
-    .subtitle { margin: 0 auto; color: var(--text-muted); font-size: 14px; max-width: 580px; }
+    .subtitle { margin: 0; color: var(--text-muted); font-size: 14px; max-width: 450px; font-weight: 400; line-height: 1.8; }
     
     .teacher-box {
-      display: inline-flex; align-items: center; gap: 10px; margin-top: 22px;
-      padding: 8px 18px; border: 1px solid var(--gold-dark); border-radius: 99px;
-      background: rgba(234, 198, 73, 0.12); color: var(--gold-light); font-size: 13px; font-weight: 700;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 24px;
+      padding: 10px 20px; border: 1px solid var(--gold-dark); border-radius: 99px;
+      background: linear-gradient(90deg, rgba(223, 183, 108, 0.1), rgba(223, 183, 108, 0.02));
+      color: var(--gold-light); font-size: 13px; font-weight: 700;
     }
-    .teacher-box span { color: var(--text-muted); font-size: 11px; font-weight: 400; }
+    .teacher-box span { color: var(--text-main); font-size: 12px; font-weight: 400; opacity: 0.8; }
 
-    .page-head { margin-bottom: 16px; padding: 22px; text-align: center; }
-    .page-head h2 { margin: 0; font-size: 22px; color: var(--gold); }
-    .page-head p { margin: 6px 0 0; color: var(--text-muted); font-size: 13px; }
+    .page-head { margin-bottom: 24px; padding: 24px; text-align: center; }
+    .page-head h2 { margin: 0; font-size: 26px; color: var(--gold); font-weight: 700; }
+    .page-head p { margin: 10px 0 0; color: var(--text-muted); font-size: 14px; }
 
+    /* Inputs & Toolbar */
     .toolbar {
       display: grid; grid-template-columns: minmax(140px, 1fr) minmax(140px, 1fr) auto;
-      gap: 12px; margin: 20px 0; max-width: 750px; margin-inline: auto;
+      gap: 16px; margin: 24px 0; padding: 16px; border-radius: var(--radius-lg);
     }
     
     .control {
-      width: 100%; padding: 12px 16px;
-      background: rgba(0, 0, 0, 0.4); border: 1px solid var(--line);
+      width: 100%; padding: 14px 16px; font-size: 15px; font-weight: 600;
+      background: rgba(3, 7, 18, 0.6); border: 1px solid rgba(223, 183, 108, 0.2);
       border-radius: 14px; color: var(--gold-light); outline: none;
-      color-scheme: dark; font-size: 14px;
+      color-scheme: dark; transition: all 0.3s;
     }
-    .control:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(234, 198, 73, 0.2); }
+    .control:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(223, 183, 108, 0.15); }
     
-    .btn {
-      border: none; border-radius: 14px; padding: 12px 20px; font-weight: 700;
-      background: var(--gold-gradient); color: #030712; font-size: 14px;
-      box-shadow: 0 6px 20px rgba(234, 198, 73, 0.35);
-    }
-    .btn:hover { box-shadow: 0 8px 25px rgba(234, 198, 73, 0.55); transform: translateY(-2px); }
-    .btn.secondary { background: rgba(234, 198, 73, 0.1); color: var(--gold); border: 1px solid var(--gold); box-shadow: none; }
-    .btn.secondary:hover { background: rgba(234, 198, 73, 0.2); }
-    .btn.icon { padding: 10px 14px; min-width: 44px; font-size: 18px; }
+    button, input { font: inherit; } 
+    button { cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    a { color: inherit; text-decoration: none; }
 
-    .section { margin-top: 16px; }
-    .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-    .section-title { font-size: 18px; font-weight: 700; color: var(--gold); margin: 0; }
+    .btn {
+      border: none; border-radius: 14px; padding: 14px 24px; font-weight: 700; font-size: 14px;
+      background: var(--gold-gradient); color: #422800; letter-spacing: 0.02em;
+      box-shadow: 0 4px 15px rgba(223, 183, 108, 0.3), inset 0 2px 2px rgba(255,255,255,0.4);
+    }
+    .btn:hover { box-shadow: 0 8px 25px rgba(223, 183, 108, 0.4); transform: translateY(-2px); filter: brightness(1.1); }
+    .btn.secondary { 
+      background: rgba(223, 183, 108, 0.08); color: var(--gold); border: 1px solid var(--gold); 
+      box-shadow: none; backdrop-filter: blur(10px); 
+    }
+    .btn.secondary:hover { background: rgba(223, 183, 108, 0.15); }
+    .btn.icon { padding: 12px; min-width: 48px; font-size: 20px; display: grid; place-items: center; }
+
+    /* Layouts */
+    .section-title { font-size: 20px; font-weight: 700; color: var(--gold); margin: 0 0 16px; }
     
-    .label { font-size: 11px; color: var(--text-muted); font-weight: 700; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .value { font-size: 18px; font-weight: 700; color: var(--text); }
-    .sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .label { font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .value { font-size: 18px; font-weight: 700; color: var(--text-main); }
+    .sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+    
+    /* Date Strip */
+    .date-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; padding: 12px; }
+    .date-cell { padding: 16px; border-radius: 16px; text-align: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
+    .date-cell b { display: block; color: var(--gold-light); font-size: 16px; margin-top: 6px; font-weight: 700; }
+
+    /* Transit Cards */
+    .transit-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .transit-card { padding: 28px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+    
+    .transit-card::after {
+      content: "☾"; position: absolute; right: -10px; top: -30px;
+      font-size: 160px; color: rgba(223, 183, 108, 0.03); transform: rotate(-15deg); pointer-events: none;
+    }
+    .transit-card.sun::after { content: "☀"; top: -20px; font-size: 140px; color: rgba(239, 68, 68, 0.03); }
+    
+    .transit-title { font-size: 13px; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px; }
+    .transit-title i { font-style: normal; font-size: 18px; }
+    .transit-name { margin-top: 10px; font-size: 36px; font-weight: 900; color: var(--gold-light); text-shadow: 0 4px 15px rgba(0,0,0,0.6); }
+    .transit-meta { font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em; }
     
     .animal-chip {
-      display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; align-self: flex-start;
       padding: 6px 14px; border: 1px solid var(--glass-border); border-radius: 99px;
-      background: rgba(255, 255, 255, 0.04); font-size: 12px; color: var(--gold-light);
+      background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent); font-size: 13px; color: var(--gold-light);
     }
 
-    .date-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
-    .date-cell { padding: 14px; border-radius: 16px; text-align: center; }
-    .date-cell b { display: block; color: var(--gold-light); font-size: 15px; margin-top: 4px; }
-
-    .transit-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .transit-card { padding: 24px; position: relative; overflow: hidden; }
-    .transit-card::before {
-      content: ""; position: absolute; inset: 0; 
-      background: radial-gradient(800px circle at top right, rgba(234, 198, 73, 0.06), transparent); pointer-events: none;
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; flex-grow: 1; }
+    .info-box { padding: 14px; border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; background: rgba(0,0,0,0.25); }
+    .info-box span { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+    .info-box b { display: block; margin-top: 6px; font-size: 14px; color: var(--text-main); }
+    
+    .time-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .time-box { padding: 14px; border-radius: 14px; border: 1px solid rgba(223, 183, 108, 0.2); background: rgba(223, 183, 108, 0.03); }
+    .time-box span { font-size: 11px; color: var(--gold); font-weight: 600; text-transform: uppercase; }
+    .time-box b { display: block; margin-top: 6px; font-size: 14px; color: var(--text-main); }
+    
+    .remaining { 
+      margin-top: 16px; padding: 12px; border-radius: 12px; 
+      background: linear-gradient(90deg, rgba(223, 183, 108, 0.1), rgba(223, 183, 108, 0.05)); 
+      font-size: 13px; color: var(--gold-light); font-weight: 700; text-align: center; border: 1px solid rgba(223, 183, 108, 0.15);
     }
-    .transit-card.sun::before { background: radial-gradient(800px circle at top right, rgba(239, 68, 68, 0.06), transparent); }
-    
-    .transit-title { font-size: 13px; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.05em; }
-    .transit-name { margin-top: 8px; font-size: 28px; font-weight: 900; color: var(--gold-light); text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
-    .transit-meta { font-size: 12px; color: var(--text-muted); }
-    
-    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
-    .info-box { padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: rgba(0,0,0,0.25); }
-    .info-box span { font-size: 10px; color: var(--text-muted); font-weight: 700; }
-    .info-box b { display: block; margin-top: 4px; font-size: 13px; color: var(--text); }
-    
-    .time-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
-    .time-box { padding: 12px; border-radius: 14px; border: 1px solid var(--glass-border); background: rgba(234, 198, 73, 0.04); }
-    .time-box span { font-size: 10px; color: var(--gold); }
-    .time-box b { display: block; margin-top: 4px; font-size: 13px; color: var(--text); }
-    
-    .remaining { margin-top: 12px; padding: 10px; border-radius: 14px; background: rgba(234, 198, 73, 0.1); font-size: 12px; color: var(--gold-light); font-weight: 700; text-align: center; }
 
-    /* Calendar Styling */
-    .calendar { padding: 18px; }
-    .month-nav { display: flex; align-items: center; gap: 10px; }
-    .month-title { font-size: 17px; font-weight: 700; min-width: 150px; text-align: center; color: var(--gold); }
+    /* Calendar Grid */
+    .calendar { padding: 30px; }
+    .calendar-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .month-nav { display: flex; align-items: center; gap: 12px; }
+    .month-title { font-size: 20px; font-weight: 700; min-width: 160px; text-align: center; color: var(--gold-light); }
     
-    .weekdays, .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
-    .weekday { text-align: center; color: var(--gold-dark); font-size: 12px; font-weight: 700; padding: 8px 0; }
+    .weekdays, .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+    .weekday { text-align: center; color: var(--gold-dark); font-size: 13px; font-weight: 700; padding: 12px 0; text-transform: uppercase; }
     
     .day { 
-      min-height: 88px; background: rgba(255,255,255,0.02); border: 1px solid var(--line); 
-      border-radius: 14px; padding: 8px 6px; text-align: left; position: relative; overflow: hidden;
-      transition: all 0.2s ease;
+      min-height: 100px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); 
+      border-radius: 14px; padding: 10px; text-align: left; position: relative; overflow: hidden;
+      transition: all 0.2s;
     }
-    .day:hover { background: rgba(234, 198, 73, 0.08); border-color: var(--gold); }
+    .day:hover { background: rgba(223, 183, 108, 0.08); border-color: var(--gold-dark); transform: scale(1.04); z-index: 2; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
     .day.empty { visibility: hidden; }
-    .day.selected { border-color: var(--gold); background: rgba(234, 198, 73, 0.18); box-shadow: inset 0 0 12px rgba(234, 198, 73, 0.25); }
+    .day.selected { 
+      border-color: var(--gold); background: rgba(223, 183, 108, 0.15); 
+      box-shadow: inset 0 0 15px rgba(223, 183, 108, 0.2), 0 0 15px rgba(223, 183, 108, 0.2); 
+    }
     .day.today::after { 
-      content: "ယနေ့"; position: absolute; right: 4px; top: 4px; font-size: 8px; 
-      color: #030712; background: var(--gold); padding: 2px 5px; border-radius: 4px; font-weight: 700; 
+      content: "ယနေ့"; position: absolute; right: 6px; top: 6px; font-size: 10px; 
+      color: #000; background: var(--gold-gradient); padding: 3px 8px; border-radius: 6px; font-weight: 700; 
     }
     
-    .gday { font-size: 16px; font-weight: 700; color: var(--gold-light); }
-    .mdate { font-size: 10px; color: var(--text-muted); margin-top: 3px; }
-    .nak { font-size: 9.5px; color: var(--gold); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .gday { font-size: 20px; font-weight: 700; color: var(--text-main); }
+    .day.selected .gday { color: var(--gold-light); }
+    .mdate { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+    .nak { font-size: 11px; color: var(--gold); margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; }
     .nak.sun-nak { color: #f87171; margin-top: 2px; }
 
-    /* Moon UI */
-    .moonbox { display: flex; align-items: center; gap: 20px; padding: 18px; margin: 16px 0; }
+    /* Realistic Moon UI */
+    .moonbox { display: flex; align-items: center; gap: 24px; padding: 20px; margin: 20px 0; }
     .moon-orb {
-      width: 72px; height: 72px; border-radius: 50%; position: relative; overflow: hidden;
-      background: radial-gradient(circle at 30% 30%, #fffde7, #eac649);
-      box-shadow: 0 0 25px rgba(234, 198, 73, 0.35), inset -10px -10px 20px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.25); flex-shrink: 0;
+      width: 80px; height: 80px; border-radius: 50%; position: relative; overflow: hidden;
+      background: radial-gradient(circle at 30% 30%, #fffde7 0%, #dfb76c 60%, #8a6a24 100%);
+      box-shadow: 0 0 25px rgba(223, 183, 108, 0.4), inset -8px -8px 15px rgba(0,0,0,0.6), inset 4px 4px 10px rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;
     }
     .moon-shadow {
-      position: absolute; inset: -1px; border-radius: 50%; background: var(--bg-deep);
-      transform-origin: center; transition: all 0.5s ease;
+      position: absolute; inset: -1px; border-radius: 50%; background: var(--bg-space);
+      transform-origin: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* List Views */
-    .nak-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 16px; }
-    .nak-item { padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
+    .nak-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 24px; }
+    .nak-item { padding: 16px; display: flex; gap: 14px; align-items: flex-start; background: rgba(0,0,0,0.2); border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
     .nno { 
-      width: 36px; height: 36px; display: grid; place-items: center; border-radius: 12px; 
-      background: var(--gold-gradient); color: #030712; font-weight: 900; flex-shrink: 0; 
+      width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; 
+      background: linear-gradient(135deg, rgba(223, 183, 108, 0.2), rgba(223, 183, 108, 0.05)); 
+      color: var(--gold-light); font-weight: 900; flex-shrink: 0; border: 1px solid rgba(223, 183, 108, 0.3); font-size: 16px;
     }
-    .nname { font-weight: 700; font-size: 15px; color: var(--gold-light); }
-    .nmeta { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-    .yoni-line { display: flex; align-items: center; gap: 6px; margin-top: 8px; color: var(--text); font-size: 12px; }
-    .gender { padding: 2px 8px; border-radius: 99px; background: rgba(234, 198, 73, 0.15); border: 1px solid var(--gold-dark); font-size: 10px; color: var(--gold-light); }
+    .nname { font-weight: 700; font-size: 16px; color: var(--gold-light); }
+    .nmeta { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.5; }
+    .yoni-line { display: flex; align-items: center; gap: 8px; margin-top: 8px; color: var(--text-main); font-size: 13px; }
+    .gender { padding: 3px 10px; border-radius: 99px; background: rgba(223, 183, 108, 0.1); border: 1px solid rgba(223, 183, 108, 0.3); font-size: 10px; color: var(--gold); }
     
-    .fullmoon-table { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 16px; }
-    .fm-row { display: flex; justify-content: space-between; padding: 12px 16px; border: 1px solid var(--line); border-radius: 14px; background: rgba(0,0,0,0.25); }
+    .fullmoon-table { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 24px; }
+    .fm-row { display: flex; justify-content: space-between; padding: 14px 20px; border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; background: rgba(0,0,0,0.25); font-size: 14px; }
     .fm-row span { color: var(--text-muted); }
-    .fm-row b { color: var(--gold); }
+    .fm-row b { color: var(--gold-light); font-weight: 700; }
 
-    .kv { display: grid; grid-template-columns: 140px 1fr; gap: 10px; border-bottom: 1px dashed var(--line); padding: 12px 0; font-size: 13px; }
+    .kv { display: grid; grid-template-columns: 150px 1fr; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 14px 0; font-size: 14px; }
     .kv:last-child { border-bottom: 0; }
     .kv span { color: var(--text-muted); } .kv b { text-align: right; color: var(--gold-light); }
     
-    .notice { border-left: 4px solid var(--gold); background: rgba(234, 198, 73, 0.1); padding: 16px; border-radius: 0 14px 14px 0; color: var(--gold-light); font-size: 13px; margin-top: 16px; }
+    .notice { border-left: 4px solid var(--gold); background: rgba(223, 183, 108, 0.08); padding: 16px 20px; border-radius: 0 14px 14px 0; color: var(--gold-light); font-size: 13px; margin-top: 20px; line-height: 1.6; }
 
     /* Contact View */
-    .contact-wrap { display: grid; gap: 16px; padding: 16px; }
-    .contact-intro h3 { font-size: 24px; color: var(--gold); margin: 0; }
-    .contact-intro p { margin: 6px 0 16px; color: var(--text-muted); }
+    .contact-wrap { display: grid; gap: 16px; padding: 24px; }
+    .contact-intro { text-align: center; margin-bottom: 10px; }
+    .contact-intro h3 { font-size: 26px; color: var(--gold-light); margin: 0; font-weight: 700; }
+    .contact-intro p { margin: 8px 0 20px; color: var(--text-muted); font-size: 14px; }
     .contact-link {
-      display: flex; align-items: center; gap: 16px; padding: 16px; border: 1px solid var(--line);
-      border-radius: 16px; background: rgba(0,0,0,0.25); transition: 0.25s ease;
+      display: flex; align-items: center; gap: 20px; padding: 16px 20px; border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius-md); background: rgba(0,0,0,0.3); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .contact-link:hover { border-color: var(--gold); background: rgba(234, 198, 73, 0.12); transform: translateX(6px); }
-    .contact-icon { font-size: 22px; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; background: var(--gold-gradient); color: #030712; }
-    .contact-link b { display: block; font-size: 15px; color: var(--gold-light); }
-    .contact-link span { display: block; margin-top: 4px; color: var(--text-muted); font-size: 12px; }
-
-    /* Bottom Navigation */
-    .bottom-nav {
-      position: fixed; z-index: 50; left: 50%; bottom: 16px; transform: translateX(-50%);
-      width: min(94%, 740px); display: flex; justify-content: space-between; padding: 8px;
-      background: var(--glass-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--glass-border); border-radius: 26px; box-shadow: 0 12px 45px rgba(0,0,0,0.85);
-    }
-    .navbtn {
-      flex: 1; border: 0; background: transparent; color: var(--text-muted);
-      border-radius: 18px; padding: 10px 4px; font-weight: 700; font-size: 11px;
-      display: flex; flex-direction: column; align-items: center; gap: 4px;
-    }
-    .navbtn i { font-size: 18px; font-style: normal; }
-    .navbtn.active { background: rgba(234, 198, 73, 0.18); color: var(--gold); }
-    .navbtn.active i { color: var(--gold-light); text-shadow: 0 0 12px var(--gold); }
+    .contact-link:hover { border-color: var(--gold-dark); background: rgba(223, 183, 108, 0.08); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+    .contact-icon { font-size: 24px; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 14px; background: var(--gold-gradient); color: #422800; box-shadow: inset 0 2px 5px rgba(255,255,255,0.5); }
+    .contact-link b { display: block; font-size: 16px; color: var(--gold-light); font-weight: 700; }
+    .contact-link span { display: block; margin-top: 4px; color: var(--text-muted); font-size: 13px; }
     
-    .copyright { color: var(--text-muted); font-size: 11px; text-align: center; padding: 24px 8px; }
+    .copyright { color: var(--text-muted); font-size: 12px; text-align: center; padding: 20px 8px; opacity: 0.6; }
 
-    /* Responsive Improvements for Mobile Devices */
+    /* Responsive Adjustments */
+    @media (max-width: 950px) {
+      .hero-content { max-width: 100%; text-align: left; }
+      .celestial-map { opacity: 0.4; }
+    }
+    @media (max-width: 850px) {
+      .nak-list { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
-      .date-strip { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-      .transit-compare { grid-template-columns: 1fr; gap: 14px; }
-      .nak-list { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      body { flex-direction: column; }
+      .sidebar {
+        width: 100%; height: 80px; flex-direction: row; justify-content: space-evenly;
+        padding: 5px; border-right: none; border-top: 1px solid var(--glass-border);
+        top: auto; bottom: 0;
+      }
+      .main-content { margin-left: 0; padding-bottom: 90px; }
+      .navbtn { width: 64px; height: 64px; font-size: 10px; gap: 4px; border-radius: 16px; }
+      .navbtn i { font-size: 20px; }
+      
+      .date-strip { grid-template-columns: repeat(2, 1fr); }
+      .transit-compare { grid-template-columns: 1fr; }
     }
     @media (max-width: 500px) {
-      .app { padding: 12px 10px; }
-      h1 { font-size: 22px; }
-      .toolbar { grid-template-columns: 1fr; gap: 10px; }
+      .app { padding: 16px; }
+      .hero { padding: 30px 20px; }
+      h1 { font-size: 26px; }
+      .toolbar { grid-template-columns: 1fr; padding: 16px; }
       .nak-list, .fullmoon-table { grid-template-columns: 1fr; }
-      .day { min-height: 75px; padding: 6px 4px; }
-      .gday { font-size: 14px; }
-      .mdate, .nak { font-size: 9px; }
-      .kv { grid-template-columns: 110px 1fr; }
-      .bottom-nav { width: 96%; bottom: 10px; padding: 6px; }
-      .navbtn { font-size: 10px; padding: 8px 2px; }
+      .day { min-height: 85px; padding: 8px 6px; }
+      .gday { font-size: 16px; }
+      .mdate, .nak { font-size: 10px; }
+      .kv { grid-template-columns: 120px 1fr; }
+      .celestial-map { transform: scale(0.7); right: -50px; top: -50px; }
     }
   </style>
 </head>
 <body>
-<div class="app">
 
-  <!-- Home Tab -->
-  <main id="homeTab" class="tab-page">
-    <header class="glass-card hero">
-      <div class="eyebrow">Premium</div>
-      <h1>မြန်မာ့ရိုးရာပြက္ခဒိန် နက္ခတ်ဗေဒင်</h1>
-      <p class="subtitle">မြန်မာရက်စွဲနှင့် နေ့စဉ် စန်းတည်နက္ခတ်၊ တနင်္ဂနွေစီးနက္ခတ်တို့၏ တည်နေရာနှင့် ကူးပြောင်းချိန်များကို တိကျစွာစစ်ဆေးနိုင်သည်။</p>
-      <div class="teacher-box">✦ ဆရာမအေးမြတ်မွန် <span>စီစဥ်သည်</span></div>
-    </header>
-
-    <div class="toolbar glass-card" style="padding: 12px;">
-      <input id="dateInput" class="control" type="date" aria-label="ရက်စွဲရွေးရန်">
-      <input id="timeInput" class="control" type="time" value="12:00" aria-label="အချိန်ရွေးရန်">
-      <button id="nowBtn" class="btn">ယနေ့ / လက်ရှိအချိန်</button>
-    </div>
-
-    <section class="date-strip glass-card" style="padding: 8px;">
-      <div class="date-cell"><div class="label">အင်္ဂလိပ်ရက်</div><b id="homeGregorian">—</b></div>
-      <div class="date-cell"><div class="label">မြန်မာရက်စွဲ</div><b id="myanmarDate">—</b></div>
-      <div class="date-cell"><div class="label">နေ့</div><b id="weekdayText">—</b></div>
-      <div class="date-cell"><div class="label">တွက်ချက်အချိန်</div><b id="calcTime">—</b></div>
-    </section>
-
-    <section class="transit-compare">
-      <article class="glass-card transit-card">
-        <div class="transit-title">☾ စန်းတည်နက္ခတ် (Moon)</div>
-        <div class="transit-name" id="nakName">—</div>
-        <div class="transit-meta" id="nakEnglish">—</div>
-        <div class="animal-chip" id="nakAnimal">—</div>
-        <div class="info-grid">
-          <div class="info-box"><span>နက္ခတ်အမှတ်</span><b id="nakNumber">—</b></div>
-          <div class="info-box"><span>ပါဒ် / ရာသီ</span><b id="padaRasi">—</b></div>
-          <div class="info-box"><span>နက္ခတ်သခင်</span><b id="nakLord">—</b></div>
-          <div class="info-box"><span>စန်းတည်အံသာ</span><b id="moonDegree">—</b></div>
-        </div>
-        <div class="time-pair">
-          <div class="time-box"><span>ဝင်ချိန်</span><b id="nakStart">—</b></div>
-          <div class="time-box"><span>ထွက်ချိန်</span><b id="nakEnd">—</b></div>
-        </div>
-        <div class="remaining">ကျန်ရှိချိန် — <span id="nakRemaining">—</span></div>
-      </article>
-
-      <article class="glass-card transit-card sun">
-        <div class="transit-title">☀ တနင်္ဂနွေစီးနက္ခတ် (Sun)</div>
-        <div class="transit-name" id="sunNakName">—</div>
-        <div class="transit-meta" id="sunNakEnglish">—</div>
-        <div class="animal-chip" id="sunNakMeta">—</div>
-        <div class="info-grid">
-          <div class="info-box"><span>ပါဒ် / ရာသီ</span><b id="sunPadaRasi">—</b></div>
-          <div class="info-box"><span>နေတည်အံသာ</span><b id="sunDegree">—</b></div>
-        </div>
-        <div class="time-pair">
-          <div class="time-box"><span>ဝင်ချိန်</span><b id="sunNakStart">—</b></div>
-          <div class="time-box"><span>ထွက်ချိန်</span><b id="sunNakEnd">—</b></div>
-        </div>
-        <div class="remaining">ကျန်ရှိချိန် — <span id="sunNakRemaining">—</span></div>
-      </article>
-    </section>
-
-    <div style="text-align: center; margin-top: 24px;">
-      <button id="copyBtn" class="btn secondary">ရလဒ်များကို ကူးယူရန်</button>
-    </div>
-  </main>
-
-  <!-- Calendar Tab -->
-  <main id="calendarTab" class="tab-page hidden">
-    <header class="glass-card page-head">
-      <h2>လစဉ် ကြယ်တာရာပြက္ခဒိန်</h2>
-      <p>နေ့စဉ် မွန်းတည့် ၁၂:၀၀ မြန်မာစံတော်ချိန်ရှိ နက္ခတ်အခြေအနေများ</p>
-    </header>
-
-    <section class="section glass-card calendar">
-      <div class="section-head">
-        <h2 class="section-title">လအလိုက်ကြည့်ရန်</h2>
-        <div class="month-nav">
-          <button id="prevMonth" class="btn secondary icon">‹</button>
-          <div id="monthTitle" class="month-title">—</div>
-          <button id="nextMonth" class="btn secondary icon">›</button>
-        </div>
-      </div>
-      <div class="weekdays">
-        <div class="weekday">တနင်္ဂနွေ</div><div class="weekday">တနင်္လာ</div><div class="weekday">အင်္ဂါ</div>
-        <div class="weekday">ဗုဒ္ဓဟူး</div><div class="weekday">ကြာသပတေး</div><div class="weekday">သောကြာ</div><div class="weekday">စနေ</div>
-      </div>
-      <div id="daysGrid" class="days"></div>
-    </section>
-
-    <section class="section glass-card" style="padding: 20px;">
-      <h2 class="section-title" style="margin-bottom: 20px;">ရွေးထားသောရက် အသေးစိတ်</h2>
-      <div class="moonbox glass-card">
-        <div class="moon-orb"><div id="moonShadow" class="moon-shadow"></div></div>
-        <div>
-          <div class="label">လအခြေအနေ</div>
-          <div class="value" id="phaseText" style="color: var(--gold-light);">—</div>
-          <div class="sub" id="calFullMoonNak">—</div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Nakhat 27 Tab -->
-  <main id="nakhatTab" class="tab-page hidden">
-    <header class="glass-card page-head">
-      <h2>နက္ခတ် (၂၇) လုံး မူလအချက်အလက်များ</h2>
-    </header>
-    <section class="section glass-card nak-list" id="nakList"></section>
-    
-    <header class="glass-card page-head" style="margin-top: 24px;">
-      <h2>မြန်မာ ၁၂ လ လပြည့်စန်းယှဉ်နက္ခတ်</h2>
-    </header>
-    <section class="section glass-card fullmoon-table" id="fullMoonTable"></section>
-  </main>
-
-  <!-- About Tab -->
-  <main id="aboutTab" class="tab-page hidden">
-    <header class="glass-card page-head">
-      <h2>တွက်ချက်ပုံနှင့် မှတ်ချက်</h2>
-      <p>Astrological Algorithm & Notes</p>
-    </header>
-    <section class="section glass-card" style="padding: 20px;">
-      <p style="color: var(--text-muted); line-height: 1.8;">မြန်မာရက်စွဲပြောင်းလဲခြင်းကို ခေတ်သစ်မြန်မာပြက္ခဒိန် algorithm အပေါ် အခြေခံထားသည်။ စန်းတည်နက္ခတ်ကို လ၏ geocentric ecliptic longitude ဖြင့်လည်းကောင်း၊ တနင်္ဂနွေစီးနက္ခတ်ကို နေ၏ geocentric ecliptic longitude ဖြင့်လည်းကောင်း အနီးစပ်ဆုံးတွက်ပြီး နိယာရနစက်ဝန်း ၂၇ ပိုင်းဖြင့် သတ်မှတ်ထားသည်။</p>
-      <div class="kv"><span>တစ်နက္ခတ်</span><b>၁၃°၂၀′</b></div>
-      <div class="kv"><span>တစ်ပါဒ်</span><b>၃°၂၀′</b></div>
-      <div class="kv"><span>နက္ခတ်စုစုပေါင်း</span><b>၂၇ လုံး / ၁၀၈ ပါဒ်</b></div>
-      <div class="notice">နက္ခတ်ကူးပြောင်းချိန်အလွန်နီးသောအခါ အဆင့်မြင့် Ephemeris ဖြင့် ထပ်မံစစ်ဆေးသင့်သည်။</div>
-    </section>
-  </main>
-
-  <!-- Contact Tab -->
-  <main id="contactTab" class="tab-page hidden">
-    <header class="glass-card page-head">
-      <h2>ဆက်သွယ်ရန်</h2>
-      <p>Consultation & Inquiries</p>
-    </header>
-    <section class="contact-wrap glass-card">
-      <div class="contact-intro">
-        <h3>ဆရာမအေးမြတ်မွန်</h3>
-        <p>ဗေဒင်နှင့်ဘဝလမ်းညွှန်</p>
-      </div>
-      <a class="contact-link" href="viber://chat?number=%2B959456345797">
-        <div class="contact-icon">📱</div>
-        <div>
-          <b>09456345797 (Viber)</b>
-          <span>Viber ဖြင့် ဆက်သွယ်ရန် နှိပ်ပါ</span>
-        </div>
-      </a>
-      <a class="contact-link" href="https://www.facebook.com/share/14jGiG686rD/" target="_blank">
-        <div class="contact-icon">📘</div>
-        <div>
-          <b>ဆရာမအေးမြတ်မွန် (Facebook Page)</b>
-          <span>Facebook Page ကို ဖွင့်ရန် နှိပ်ပါ</span>
-        </div>
-      </a>
-      <a class="contact-link" href="https://tiktok.com/@ayemyatmon7995" target="_blank">
-        <div class="contact-icon">🎵</div>
-        <div>
-          <b>ဆရာမအေးမြတ်မွန် (TikTok)</b>
-          <span>TikTok Account ကို ဖွင့်ရန် နှိပ်ပါ</span>
-        </div>
-      </a>
-    </section>
-  </main>
-
-  <div class="copyright">မြန်မာ့ရိုးရာပြက္ခဒိန် နက္ခတ်ဗေဒင် • Premium V3.6</div>
-</div>
-
-<!-- Navigation -->
-<nav class="bottom-nav">
-  <button class="navbtn active" data-tab="homeTab"><i>⌂</i>ယနေ့</button>
-  <button class="navbtn" data-tab="calendarTab"><i>▦</i>ပြက္ခဒိန်</button>
-  <button class="navbtn" data-tab="nakhatTab"><i>✦</i>နက္ခတ် ၂၇</button>
-  <button class="navbtn" data-tab="aboutTab"><i>ⓘ</i>တွက်နည်း</button>
-  <button class="navbtn" data-tab="contactTab"><i>☎</i>ဆက်သွယ်ရန်</button>
+<!-- Left Sidebar Navigation -->
+<nav class="sidebar">
+  <button class="navbtn active" data-tab="homeTab"><i>⌂</i> <span>ယနေ့</span></button>
+  <button class="navbtn" data-tab="calendarTab"><i>▦</i> <span>ပြက္ခဒိန်</span></button>
+  <button class="navbtn" data-tab="nakhatTab"><i>✦</i> <span>နက္ခတ် ၂၇</span></button>
+  <button class="navbtn" data-tab="aboutTab"><i>ⓘ</i> <span>တွက်နည်း</span></button>
+  <button class="navbtn" data-tab="contactTab"><i>☎</i> <span>ဆက်သွယ်ရန်</span></button>
 </nav>
+
+<div class="main-content">
+  <div class="app">
+    <!-- Home Tab -->
+    <main id="homeTab" class="tab-page">
+      <header class="glass-card hero">
+        <!-- Celestial Orbit Map Container (API မခေါ်ရသေးခင် Animation ပြနေမည်) -->
+        <div class="celestial-map">
+          <div class="sun-glow"></div>
+          <div class="orbit-ring earth-orbit">
+            <div class="earth-group">
+              <div class="planet-earth"></div>
+              <div class="orbit-ring moon-orbit">
+                <div class="planet-moon"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-content">
+          <div class="eyebrow">Astrological Edition</div>
+          <h1>မြန်မာ့ရိုးရာပြက္ခဒိန် နက္ခတ်ဗေဒင်</h1>
+          <p class="subtitle">မြန်မာရက်စွဲနှင့် နေ့စဉ် စန်းတည်နက္ခတ်၊ တနင်္ဂနွေစီးနက္ခတ်တို့၏ တည်နေရာနှင့် ကူးပြောင်းချိန်များကို တိကျစွာစစ်ဆေးနိုင်သည်။</p>
+          <div class="teacher-box">✦ ဆရာမအေးမြတ်မွန် <span>စီစဥ်သည်</span></div>
+        </div>
+      </header>
+
+      <div class="toolbar glass-card">
+        <input id="dateInput" class="control" type="date" aria-label="ရက်စွဲရွေးရန်">
+        <input id="timeInput" class="control" type="time" value="12:00" aria-label="အချိန်ရွေးရန်">
+        <button id="nowBtn" class="btn">ယနေ့ / လက်ရှိအချိန်</button>
+      </div>
+
+      <!-- Date Details ... -->
+      <section class="date-strip glass-card">
+        <div class="date-cell"><div class="label">အင်္ဂလိပ်ရက်</div><b id="homeGregorian">—</b></div>
+        <div class="date-cell"><div class="label">မြန်မာရက်စွဲ</div><b id="myanmarDate">—</b></div>
+        <div class="date-cell"><div class="label">နေ့</div><b id="weekdayText">—</b></div>
+        <div class="date-cell"><div class="label">တွက်ချက်အချိန်</div><b id="calcTime">—</b></div>
+      </section>
+
+      <!-- Transits ... -->
+      <section class="transit-compare">
+        <!-- Moon Card -->
+        <article class="glass-card transit-card">
+          <div class="transit-title"><i>☾</i> စန်းတည်နက္ခတ် (Moon)</div>
+          <div class="transit-name" id="nakName">—</div>
+          <div class="transit-meta" id="nakEnglish">—</div>
+          <div class="animal-chip" id="nakAnimal">—</div>
+          <div class="info-grid">
+            <div class="info-box"><span>နက္ခတ်အမှတ်</span><b id="nakNumber">—</b></div>
+            <div class="info-box"><span>ပါဒ် / ရာသီ</span><b id="padaRasi">—</b></div>
+            <div class="info-box"><span>နက္ခတ်သခင်</span><b id="nakLord">—</b></div>
+            <div class="info-box"><span>စန်းတည်အံသာ</span><b id="moonDegree">—</b></div>
+          </div>
+          <div class="time-pair">
+            <div class="time-box"><span>ဝင်ချိန်</span><b id="nakStart">—</b></div>
+            <div class="time-box"><span>ထွက်ချိန်</span><b id="nakEnd">—</b></div>
+          </div>
+          <div class="remaining">ကျန်ရှိချိန် — <span id="nakRemaining">—</span></div>
+        </article>
+
+        <!-- Sun Card -->
+        <article class="glass-card transit-card sun">
+          <div class="transit-title"><i>☀</i> တနင်္ဂနွေစီးနက္ခတ် (Sun)</div>
+          <div class="transit-name" id="sunNakName">—</div>
+          <div class="transit-meta" id="sunNakEnglish">—</div>
+          <div class="animal-chip" id="sunNakMeta">—</div>
+          <div class="info-grid">
+            <div class="info-box"><span>ပါဒ် / ရာသီ</span><b id="sunPadaRasi">—</b></div>
+            <div class="info-box"><span>နေတည်အံသာ</span><b id="sunDegree">—</b></div>
+          </div>
+          <div class="time-pair">
+            <div class="time-box"><span>ဝင်ချိန်</span><b id="sunNakStart">—</b></div>
+            <div class="time-box"><span>ထွက်ချိန်</span><b id="sunNakEnd">—</b></div>
+          </div>
+          <div class="remaining" style="background: linear-gradient(90deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05)); color: #fca5a5; border-color: rgba(239, 68, 68, 0.15);">ကျန်ရှိချိန် — <span id="sunNakRemaining">—</span></div>
+        </article>
+      </section>
+
+      <div style="text-align: center; margin-top: 32px;">
+        <button id="copyBtn" class="btn secondary">ရလဒ်များကို ကူးယူရန် (Copy to Clipboard)</button>
+      </div>
+    </main>
+
+    <!-- Calendar Tab -->
+    <main id="calendarTab" class="tab-page hidden">
+      <header class="glass-card page-head">
+        <h2>လစဉ် ကြယ်တာရာပြက္ခဒိန်</h2>
+        <p>နေ့စဉ် မွန်းတည့် ၁၂:၀၀ မြန်မာစံတော်ချိန်ရှိ နက္ခတ်အခြေအနေများ</p>
+      </header>
+
+      <section class="glass-card calendar">
+        <div class="calendar-head">
+          <h2 class="section-title" style="margin:0;">လအလိုက်ကြည့်ရန်</h2>
+          <div class="month-nav">
+            <button id="prevMonth" class="btn secondary icon">‹</button>
+            <div id="monthTitle" class="month-title">—</div>
+            <button id="nextMonth" class="btn secondary icon">›</button>
+          </div>
+        </div>
+        <div class="weekdays">
+          <div class="weekday">တနင်္ဂနွေ</div><div class="weekday">တနင်္လာ</div><div class="weekday">အင်္ဂါ</div>
+          <div class="weekday">ဗုဒ္ဓဟူး</div><div class="weekday">ကြာသပတေး</div><div class="weekday">သောကြာ</div><div class="weekday">စနေ</div>
+        </div>
+        <div id="daysGrid" class="days"></div>
+      </section>
+
+      <section class="glass-card" style="padding: 24px; margin-top: 24px;">
+        <h2 class="section-title">ရွေးထားသောရက် အသေးစိတ်</h2>
+        <div class="moonbox glass-card" style="background: rgba(0,0,0,0.2); box-shadow: none;">
+          <div class="moon-orb"><div id="moonShadow" class="moon-shadow"></div></div>
+          <div>
+            <div class="label">လအခြေအနေ (Moon Phase)</div>
+            <div class="value" id="phaseText" style="color: var(--gold-light);">—</div>
+            <div class="sub" id="calFullMoonNak">—</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Nakhat 27 Tab -->
+    <main id="nakhatTab" class="tab-page hidden">
+      <header class="glass-card page-head">
+        <h2>နက္ခတ် (၂၇) လုံး မူလအချက်အလက်များ</h2>
+        <p>Astrological Constellations</p>
+      </header>
+      <section class="glass-card nak-list" id="nakList"></section>
+      
+      <header class="glass-card page-head" style="margin-top: 32px;">
+        <h2>မြန်မာ ၁၂ လ လပြည့်စန်းယှဉ်နက္ခတ်</h2>
+      </header>
+      <section class="glass-card fullmoon-table" id="fullMoonTable"></section>
+    </main>
+
+    <!-- About Tab -->
+    <main id="aboutTab" class="tab-page hidden">
+      <header class="glass-card page-head">
+        <h2>တွက်ချက်ပုံနှင့် မှတ်ချက်</h2>
+        <p>Astrological Algorithm & Notes</p>
+      </header>
+      <section class="glass-card" style="padding: 24px;">
+        <p style="color: var(--text-muted); line-height: 1.8;">မြန်မာရက်စွဲပြောင်းလဲခြင်းကို ခေတ်သစ်မြန်မာပြက္ခဒိန် algorithm အပေါ် အခြေခံထားသည်။ စန်းတည်နက္ခတ်ကို လ၏ geocentric ecliptic longitude ဖြင့်လည်းကောင်း၊ တနင်္ဂနွေစီးနက္ခတ်ကို နေ၏ geocentric ecliptic longitude ဖြင့်လည်းကောင်း အနီးစပ်ဆုံးတွက်ပြီး နိယာရနစက်ဝန်း ၂၇ ပိုင်းဖြင့် သတ်မှတ်ထားသည်။</p>
+        <div style="margin-top:20px;">
+          <div class="kv"><span>တစ်နက္ခတ်</span><b>၁၃°၂၀′</b></div>
+          <div class="kv"><span>တစ်ပါဒ်</span><b>၃°၂၀′</b></div>
+          <div class="kv"><span>နက္ခတ်စုစုပေါင်း</span><b>၂၇ လုံး / ၁၀၈ ပါဒ်</b></div>
+        </div>
+        <div class="notice">နက္ခတ်ကူးပြောင်းချိန်အလွန်နီးသောအခါ အဆင့်မြင့် Ephemeris ဖြင့် ထပ်မံစစ်ဆေးသင့်သည်။</div>
+      </section>
+    </main>
+
+    <!-- Contact Tab -->
+    <main id="contactTab" class="tab-page hidden">
+      <header class="glass-card page-head">
+        <h2>ဆက်သွယ်ရန်</h2>
+        <p>Consultation & Inquiries</p>
+      </header>
+      <section class="contact-wrap glass-card">
+        <div class="contact-intro">
+          <h3>ဆရာမအေးမြတ်မွန်</h3>
+          <p>ဗေဒင်နှင့်ဘဝလမ်းညွှန်</p>
+        </div>
+        <a class="contact-link" href="viber://chat?number=%2B959456345797">
+          <div class="contact-icon">📱</div>
+          <div>
+            <b>09456345797 (Viber)</b>
+            <span>Viber ဖြင့် ဆက်သွယ်ရန် နှိပ်ပါ</span>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.facebook.com/share/14jGiG686rD/" target="_blank">
+          <div class="contact-icon">📘</div>
+          <div>
+            <b>ဆရာမအေးမြတ်မွန် (Facebook Page)</b>
+            <span>Facebook Page ကို ဖွင့်ရန် နှိပ်ပါ</span>
+          </div>
+        </a>
+        <a class="contact-link" href="https://tiktok.com/@ayemyatmon7995" target="_blank">
+          <div class="contact-icon">🎵</div>
+          <div>
+            <b>ဆရာမအေးမြတ်မွန် (TikTok)</b>
+            <span>TikTok Account ကို ဖွင့်ရန် နှိပ်ပါ</span>
+          </div>
+        </a>
+      </section>
+    </main>
+
+    <div class="copyright">DEVELOR BY AIOBABYBOSS • </div>
+  </div>
+</div>
 
 <script>
 'use strict';
-// Data Arrays
 const MM_MONTHS={0:'ပထမဝါဆို',1:'တန်ခူး',2:'ကဆုန်',3:'နယုန်',4:'ဝါဆို',5:'ဝါခေါင်',6:'တော်သလင်း',7:'သီတင်းကျွတ်',8:'တန်ဆောင်မုန်း',9:'နတ်တော်',10:'ပြာသို',11:'တပို့တွဲ',12:'တပေါင်း',13:'နှောင်းတန်ခူး',14:'နှောင်းကဆုန်'};
 const WEEKDAYS=['တနင်္ဂနွေ','တနင်္လာ','အင်္ဂါ','ဗုဒ္ဓဟူး','ကြာသပတေး','သောကြာ','စနေ'];
 const G_MONTHS=['ဇန်နဝါရီ','ဖေဖော်ဝါရီ','မတ်','ဧပြီ','မေ','ဇွန်','ဇူလိုင်','ဩဂုတ်','စက်တင်ဘာ','အောက်တိုဘာ','နိုဝင်ဘာ','ဒီဇင်ဘာ'];
 const RASIS=['မိဿ','ပြိဿ','မေထုန်','ကရကဋ်','သိဟ်','ကန်','တူ','ဗြိစ္ဆာ','ဓနု','မကာရ','ကုံ','မိန်'];
 const NAKS=[
-  ['အဿဝဏီ','Ashwini'],['ဘရဏီ','Bharani'],['ကြတ္တိကာ','Krittika'],['ရောဟဏီ','Rohini'],
-  ['မိဂသီ','Mrigashirsha'],['အဒြ','Ardra'],['ပုဏ္ဏဖုသျှ','Punarvasu'],['ဖုသျှ','Pushya'],
-  ['အဿလိဿ','Ashlesha'],['မာဃ','Magha'],['ပြုဗ္ဗာဖလဂုဏီ','Purva Phalguni'],['ဥတြဖလဂုဏီ','Uttara Phalguni'],
-  ['ဟဿတ','Hasta'],['စိတြ','Chitra'],['သွာတိ','Swati'],['ဝိသာခါ','Vishakha'],
-  ['အနုရာဓ','Anuradha'],['ဇေဋ္ဌ','Jyeshtha'],['မူလ','Mula'],['ပြုဗ္ဗာသဠ်','Purva Ashadha'],
-  ['ဥတြသဠ်','Uttara Ashadha'],['သရဝဏ်','Shravana'],['ဓနသိဒ္ဓ','Dhanishtha'],['သတ္တဘိသျှ','Shatabhisha'],
-  ['ပြုဗ္ဗာဘဒြပိုဒ်','Purva Bhadrapada'],['ဥတြဘဒြပိုဒ်','Uttara Bhadrapada'],['ရေဝတီ','Revati']
+ ['အဿဝဏီ','Ashwini'],['ဘရဏီ','Bharani'],['ကြတ္တိကာ','Krittika'],['ရောဟဏီ','Rohini'],
+ ['မိဂသီ','Mrigashirsha'],['အဒြ','Ardra'],['ပုဏ္ဏဖုသျှ','Punarvasu'],['ဖုသျှ','Pushya'],
+ ['အဿလိဿ','Ashlesha'],['မာဃ','Magha'],['ပြုဗ္ဗာဖလဂုဏီ','Purva Phalguni'],['ဥတြဖလဂုဏီ','Uttara Phalguni'],
+ ['ဟဿတ','Hasta'],['စိတြ','Chitra'],['သွာတိ','Swati'],['ဝိသာခါ','Vishakha'],
+ ['အနုရာဓ','Anuradha'],['ဇေဋ္ဌ','Jyeshtha'],['မူလ','Mula'],['ပြုဗ္ဗာသဠ်','Purva Ashadha'],
+ ['ဥတြသဠ်','Uttara Ashadha'],['သရဝဏ်','Shravana'],['ဓနသိဒ္ဓ','Dhanishtha'],['သတ္တဘိသျှ','Shatabhisha'],
+ ['ပြုဗ္ဗာဘဒြပိုဒ်','Purva Bhadrapada'],['ဥတြဘဒြပိုဒ်','Uttara Bhadrapada'],['ရေဝတီ','Revati']
 ];
 const YONIS=[
-  {animal:'မြင်း',gender:'အထီး',icon:'🐎'},{animal:'ဆင်',gender:'အထီး',icon:'🐘'},{animal:'ဆိတ်',gender:'အမ',icon:'🐐'},
-  {animal:'မြွေ',gender:'အထီး',icon:'🐍'},{animal:'မြွေ',gender:'အမ',icon:'🐍'},{animal:'ခွေး',gender:'အမ',icon:'🐕'},
-  {animal:'ကြောင်',gender:'အမ',icon:'🐈'},{animal:'ဆိတ်',gender:'အထီး',icon:'🐏'},{animal:'ကြောင်',gender:'အထီး',icon:'🐈'},
-  {animal:'ကြွက်',gender:'အထီး',icon:'🐀'},{animal:'ကြွက်',gender:'အမ',icon:'🐁'},{animal:'နွား',gender:'အထီး',icon:'🐂'},
-  {animal:'ကျွဲ',gender:'အမ',icon:'🐃'},{animal:'ကျား',gender:'အမ',icon:'🐅'},{animal:'ကျွဲ',gender:'အထီး',icon:'🐃'},
-  {animal:'ကျား',gender:'အထီး',icon:'🐅'},{animal:'သမင်',gender:'အမ',icon:'🦌'},{animal:'သမင်',gender:'အထီး',icon:'🦌'},
-  {animal:'ခွေး',gender:'အထီး',icon:'🐕'},{animal:'မျောက်',gender:'အထီး',icon:'🐒'},{animal:'မြွေပါ',gender:'အထီး',icon:'🦡'},
-  {animal:'မျောက်',gender:'အမ',icon:'🐒'},{animal:'ခြင်္သေ့',gender:'အမ',icon:'🦁'},{animal:'မြင်း',gender:'အမ',icon:'🐎'},
-  {animal:'ခြင်္သေ့',gender:'အထီး',icon:'🦁'},{animal:'နွား',gender:'အမ',icon:'🐄'},{animal:'ဆင်',gender:'အမ',icon:'🐘'}
+ {animal:'မြင်း',gender:'အထီး',icon:'🐎'},{animal:'ဆင်',gender:'အထီး',icon:'🐘'},{animal:'ဆိတ်',gender:'အမ',icon:'🐐'},
+ {animal:'မြွေ',gender:'အထီး',icon:'🐍'},{animal:'မြွေ',gender:'အမ',icon:'🐍'},{animal:'ခွေး',gender:'အမ',icon:'🐕'},
+ {animal:'ကြောင်',gender:'အမ',icon:'🐈'},{animal:'ဆိတ်',gender:'အထီး',icon:'🐏'},{animal:'ကြောင်',gender:'အထီး',icon:'🐈'},
+ {animal:'ကြွက်',gender:'အထီး',icon:'🐀'},{animal:'ကြွက်',gender:'အမ',icon:'🐁'},{animal:'နွား',gender:'အထီး',icon:'🐂'},
+ {animal:'ကျွဲ',gender:'အမ',icon:'🐃'},{animal:'ကျား',gender:'အမ',icon:'🐅'},{animal:'ကျွဲ',gender:'အထီး',icon:'🐃'},
+ {animal:'ကျား',gender:'အထီး',icon:'🐅'},{animal:'သမင်',gender:'အမ',icon:'🦌'},{animal:'သမင်',gender:'အထီး',icon:'🦌'},
+ {animal:'ခွေး',gender:'အထီး',icon:'🐕'},{animal:'မျောက်',gender:'အထီး',icon:'🐒'},{animal:'မြွေပါ',gender:'အထီး',icon:'🦡'},
+ {animal:'မျောက်',gender:'အမ',icon:'🐒'},{animal:'ခြင်္သေ့',gender:'အမ',icon:'🦁'},{animal:'မြင်း',gender:'အမ',icon:'🐎'},
+ {animal:'ခြင်္သေ့',gender:'အထီး',icon:'🦁'},{animal:'နွား',gender:'အမ',icon:'🐄'},{animal:'ဆင်',gender:'အမ',icon:'🐘'}
 ];
 const LORDS=['ကိတ်','သောကြာ','တနင်္ဂနွေ','တနင်္လါ','အင်္ဂါ','ရာဟု','ကြာသပတေး','စနေ','ဗုဒ္ဓဟူး'];
 const FULL_MOON_MAP={1:13,2:15,3:17,4:19,5:21,6:23,7:26,8:2,9:4,10:6,11:8,12:10,0:19,13:13,14:15};
 const MY_DIGITS=['၀','၁','၂','၃','၄','၅','၆','၇','၈','၉'];
 
-// Utility Functions
 function myNum(v){return String(v).replace(/\d/g,d=>MY_DIGITS[d]);}
 function pad2(n){return String(n).padStart(2,'0');}
 function norm360(x){x%=360;return x<0?x+360:x;}
 function sind(x){return Math.sin(x*Math.PI/180)} function cosd(x){return Math.cos(x*Math.PI/180)}
 function atan2d(y,x){return Math.atan2(y,x)*180/Math.PI;}
 
-// Calendar Math (Yan Naing Aye's algorithm)
 function westernToJdn(y,m,d){
   const a=Math.floor((14-m)/12); y=y+4800-a; m=m+12*a-3;
   return d+Math.floor((153*m+2)/5)+365*y+Math.floor(y/4)-Math.floor(y/100)+Math.floor(y/400)-32045;
@@ -550,7 +681,6 @@ function formatMyanmarDate(info){
  return `${myNum(info.my)} ခုနှစ်၊ ${MM_MONTHS[info.mm]}${p}${ds}`;
 }
 
-// Astronomy Math
 function moonTropicalLongitude(ms){
  const jd=ms/86400000+2440587.5,d=jd-2451543.5;
  const N=norm360(125.1228-0.0529538083*d),i=5.1454,w=norm360(318.0634+0.1643573223*d),a=60.2666,e=.0549,M=norm360(115.3654+13.0649929509*d);
@@ -601,19 +731,107 @@ function drawMoon(ms){
   if(k<.5){
     const scale=1-2*k;
     shadow.style.transform=`translateX(${p.waxing?-50:50}%) scaleX(${scale})`;
-    shadow.style.background='var(--bg-deep)';
+    shadow.style.background='var(--bg-space)';
   }else{
     const scale=2*k-1;
     shadow.style.transform=`translateX(${p.waxing?50:-50}%) scaleX(${scale})`;
-    shadow.style.background='radial-gradient(circle at center, #fffde7, #d4af37)';
+    shadow.style.background='radial-gradient(circle at center, #fffde7, #dfb76c)';
   }
 }
 
-// App State
 let selected=currentMmt(),viewYear=selected.y,viewMonth=selected.m;
 const $=id=>document.getElementById(id);
 function selectedMs(){return localMmtMs(selected.y,selected.m,selected.d,$('timeInput').value||'12:00');}
 function setText(id,text){const el=$(id);if(el)el.textContent=text;}
+
+// --- အသစ်ထည့်သွင်းထားသော (Visual Chart API) ခေါ်ယူသည့် Function ---
+async function renderVisualChart() {
+    const payload = {
+      "person_a": {
+        "name": "Date Selection",
+        "year": selected.y,
+        "month": selected.m,
+        "day": selected.d,
+        "hour": 12,
+        "minute": 0,
+        "time_known": true,
+        "include_minor_aspects": false,
+        "city": "Yangon",
+        "lat": 16.8409,
+        "lng": 96.1735,
+        "tz_str": "Asia/Yangon",
+        "house_system": "placidus",
+        "zodiac_type": "tropical",
+        "format": "svg",
+        "size": 350,
+        "show_metadata": false,
+        "display_settings": {
+            "sun": true, "moon": true, "mercury": true, "venus": true, "mars": true,
+            "jupiter": true, "saturn": true, "uranus": true, "neptune": true, "pluto": true,
+            "north_node": true, "south_node": false, "chiron": false, "lilith": false,
+            "asc": true, "mc": true, "dsc": false, "ic": false, "part_of_fortune": false
+        }
+      },
+      // ဤဥပမာတွင် ဒုတိယလူ (Person B) ကို ဖယ်ရှားထားနိုင်သည် (သို့မဟုတ်) Natal ဇာတာတိုက်ရန် ဆက်ထားနိုင်သည်
+      "person_b": {
+        "name": "Reference",
+        "year": 1990, "month": 5, "day": 15, "hour": 14, "minute": 30,
+        "time_known": true, "city": "London", "lat": 51.5, "lng": -0.12, "tz_str": "Europe/London",
+        "house_system": "placidus", "zodiac_type": "tropical", "format": "svg", "size": 350
+      },
+      "show_aspects": true,
+      "chart_config": {
+        // UI အရောင်များနှင့် ကွက်တိကျစေရန် ချိန်ညှိထားပါသည်
+        "chart_background": "#030712",
+        "custom_planet_color": "#fef08a",
+        "custom_sign_color": "#dfb76c",
+        "custom_house_color": "#94a3b8",
+        "custom_sign_bg_color": "#0f172a",
+        "custom_house_bg_color": "transparent",
+        "sign_line_color": "#dfb76c",
+        "house_line_color": "rgba(148,163,184,0.3)",
+        "aspect_conjunction_color": "#D6DCE5",
+        "aspect_opposition_color": "#E06C5B",
+        "aspect_trine_color": "#6EA8FF",
+        "aspect_square_color": "#C85C53",
+        "aspect_sextile_color": "#7EB7FF",
+        "aspect_quincunx_color": "#7EBB8D"
+      }
+    };
+
+    try {
+        // သတိပြုရန်: ဤနေရာတွင် API ကို လုံခြုံရေးအရ Python Backend (Localhost) သို့ လှမ်းခေါ်ရန် ရေးသားထားပါသည်။
+        const response = await fetch('http://localhost:5000/api/astrology/visual', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error('API ချိတ်ဆက်ရာတွင် အမှားအယွင်းရှိနေပါသည်။');
+
+        const data = await response.json();
+        
+        // Backend မှ SVG String ကို ပြန်လည်ရယူခြင်း
+        const svgCode = data.svg || data.data; 
+
+        // HTML ထဲရှိ .celestial-map နေရာတွင် အစားထိုးပြသခြင်း
+        const mapContainer = document.querySelector('.celestial-map');
+        if (mapContainer && svgCode) {
+            mapContainer.innerHTML = svgCode;
+            
+            // SVG ၏ အရွယ်အစားနှင့် အရိပ်များကို CSS ဖြင့် ချိန်ညှိခြင်း
+            const svgElement = mapContainer.querySelector('svg');
+            if (svgElement) {
+                svgElement.style.width = '100%';
+                svgElement.style.height = '100%';
+                svgElement.style.filter = 'drop-shadow(0 0 20px rgba(223, 183, 108, 0.4))';
+            }
+        }
+    } catch (error) {
+        console.error('စက်ဝန်းကားချပ် ဆွဲယူရာတွင် Error ဖြစ်နေပါသည်:', error);
+    }
+}
+// --- ပြီးပါပြီ ---
 
 function updateDetails(){
  const ms=selectedMs(),n=nakhatAt(ms),s=sunNakhatAt(ms),md=mmDateInfo(selected.y,selected.m,selected.d),
@@ -639,7 +857,11 @@ function updateDetails(){
 
  setText('phaseText',phase);
  setText('calFullMoonNak',fmIdx!==undefined?`ဤလ လပြည့်စန်းယှဉ် — ${NAKS[fmIdx][0]}`:'—');
- drawMoon(ms); $('dateInput').value=dateKey(selected.y,selected.m,selected.d);
+ drawMoon(ms); 
+ $('dateInput').value=dateKey(selected.y,selected.m,selected.d);
+ 
+ // ရက်စွဲပြောင်းတိုင်း (Visual Chart) ကိုပါ တစ်ပါတည်း ခေါ်ယူစေရန် ထည့်သွင်းထားပါသည်
+ renderVisualChart();
 }
 
 function renderCalendar(){
@@ -660,13 +882,12 @@ function renderCalendar(){
 }
 
 function renderLists(){
- $('nakList').innerHTML=NAKS.map((x,i)=>{const start=i*(360/27),end=(i+1)*(360/27),y=YONIS[i];return `<div class="glass-card nak-item"><div class="nno">${myNum(i+1)}</div><div><div class="nname">${x[0]}</div><div class="yoni-line"><span>${y.icon} ${y.animal}</span><span class="gender">${y.gender}</span></div><div class="nmeta">${x[1]} • သခင် ${LORDS[i%9]} <br> ${myNum(start.toFixed(2))}°–${myNum(end.toFixed(2))}°</div></div></div>`}).join('');
+ $('nakList').innerHTML=NAKS.map((x,i)=>{const start=i*(360/27),end=(i+1)*(360/27),y=YONIS[i];return `<div class="nak-item"><div class="nno">${myNum(i+1)}</div><div><div class="nname">${x[0]}</div><div class="yoni-line"><span>${y.icon} ${y.animal}</span><span class="gender">${y.gender}</span></div><div class="nmeta">${x[1]} • သခင် ${LORDS[i%9]} <br> ${myNum(start.toFixed(2))}°–${myNum(end.toFixed(2))}°</div></div></div>`}).join('');
  const months=[1,2,3,4,5,6,7,8,9,10,11,12];$('fullMoonTable').innerHTML=months.map(mm=>`<div class="fm-row"><span>${MM_MONTHS[mm]}</span><b>${NAKS[FULL_MOON_MAP[mm]][0]}</b></div>`).join('');
 }
 
 function setToNow(){const p=currentMmt();selected={y:p.y,m:p.m,d:p.d};viewYear=p.y;viewMonth=p.m;$('timeInput').value=`${pad2(p.h)}:${pad2(p.n)}`;updateDetails();renderCalendar();}
 
-// Event Listeners
 $('dateInput').addEventListener('change',e=>{if(!e.target.value)return;const [y,m,d]=e.target.value.split('-').map(Number);selected={y,m,d};viewYear=y;viewMonth=m;updateDetails();renderCalendar();});
 $('timeInput').addEventListener('change',updateDetails); $('nowBtn').addEventListener('click',setToNow);
 $('prevMonth').addEventListener('click',()=>{viewMonth--;if(viewMonth<1){viewMonth=12;viewYear--;}renderCalendar();});
@@ -675,7 +896,7 @@ $('nextMonth').addEventListener('click',()=>{viewMonth++;if(viewMonth>12){viewMo
 $('copyBtn').addEventListener('click',async()=>{
  const ms=selectedMs(),n=nakhatAt(ms),s=sunNakhatAt(ms),md=mmDateInfo(selected.y,selected.m,selected.d),tr=findTransitions(ms),sunTr=findSunTransitions(ms);
  const txt=`${selected.d}-${selected.m}-${selected.y} ${$('timeInput').value} MMT\n${formatMyanmarDate(md)}\n\nစန်းတည်နက္ခတ် — ${NAKS[n.index][0]} (${NAKS[n.index][1]})\nအကောင် — ${YONIS[n.index].animal} (${YONIS[n.index].gender})\nပါဒ် ${n.pada} • ${RASIS[n.rasi]}ရာသီ • သခင် ${n.lord}\nစန်းနက္ခတ်ဝင် ${fmtMmt(tr.start)}\nစန်းနက္ခတ်ထွက် ${fmtMmt(tr.end)}\n\nတနင်္ဂနွေ (နေ) စီးနက္ခတ် — ${NAKS[s.index][0]} (${NAKS[s.index][1]})\nပါဒ် ${s.pada} • ${RASIS[s.rasi]}ရာသီ • သခင် ${s.lord}\nနေနက္ခတ်ဝင် ${fmtMmt(sunTr.start)}\nနေနက္ခတ်ထွက် ${fmtMmt(sunTr.end)}`;
- try{await navigator.clipboard.writeText(txt);$('copyBtn').textContent='ကူးယူပြီးပါပြီ ✓';setTimeout(()=>$('copyBtn').textContent='ရလဒ်များကို ကူးယူရန် (Copy)',1400);}catch{alert(txt);}
+ try{await navigator.clipboard.writeText(txt);$('copyBtn').textContent='ကူးယူပြီးပါပြီ ✓';setTimeout(()=>$('copyBtn').textContent='ရလဒ်များကို ကူးယူရန် (Copy to Clipboard)',1400);}catch{alert(txt);}
 });
 
 document.querySelectorAll('.navbtn').forEach(btn=>btn.addEventListener('click',()=>{
@@ -684,7 +905,6 @@ document.querySelectorAll('.navbtn').forEach(btn=>btn.addEventListener('click',(
  $(btn.dataset.tab).classList.remove('hidden'); window.scrollTo({top:0,behavior:'smooth'});
 }));
 
-// Init
 renderLists(); $('dateInput').value=dateKey(selected.y,selected.m,selected.d); updateDetails(); renderCalendar();
 </script>
 </body>
